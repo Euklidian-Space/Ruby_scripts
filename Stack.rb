@@ -35,15 +35,22 @@ class Stack
     @store[@top]
   end
 
+  def test_full?
+    return full?
+  end
+
+  def test_empty?
+    return empty?
+  end
+
   private
 
   def full?
-    return false if look.nil?
-    return true
+    look == nil
   end
 
   def empty?
-    return true if !full?
+    !full?
   end
 end
 
