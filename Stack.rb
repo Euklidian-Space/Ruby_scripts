@@ -1,4 +1,5 @@
-
+#This class is a class that simulates a stack.  Which
+#is a first in-last out data structure scheme.
 require 'pry'
 class Stack
   def initialize(size)
