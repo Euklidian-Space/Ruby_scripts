@@ -1,6 +1,6 @@
 #This class is a class that simulates a stack.  Which
 #is a first in-last out data structure scheme.
-require 'pry'
+#require 'pry'
 class Stack
   def initialize(size)
     @store = Array.new(size)
@@ -9,11 +9,14 @@ class Stack
 
   def pop
     #binding.pry
-    return nil if empty?
-    popped = @store[@top]
-    @store[@top] = nil
-    @top = @top.pred
-    popped
+    if empty?
+      nil
+    else
+      popped = @store[@top]
+      @store[@top] = nil
+      @top = @top.pred
+      popped
+    end
   end
 
   def push(element)
@@ -46,7 +49,7 @@ class Stack
   private
 
   def full?
-    look == nil
+    @top == (@size - 1)
   end
 
   def empty?
