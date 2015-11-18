@@ -53,6 +53,6 @@ class Queue
   end
 
   def empty?
-    @store[@size - 1].nil?
+      @store.index{|elem| !elem.nil?} == nil
   end
 end
