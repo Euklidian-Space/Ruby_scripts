@@ -49,7 +49,7 @@ class Queue
   private
 
   def full?
-    !@store[0].nil?
+    @store.index{|elem| elem.nil?} == nil
   end
 
   def empty?
