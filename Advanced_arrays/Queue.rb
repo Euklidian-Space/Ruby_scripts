@@ -5,11 +5,22 @@ class Queue
   def initialize(size)
     @size = size
     @back = @size - 1
+    @front = @size - 1
     @store = Array.new(@size)
   end
 
   def dequeue
-    @store[@back]
+    if empty?
+      nil
+    else
+      #popped = @back == 0 ? @store[@back] : @store[@back + 1]
+
+      #@store[@back == 0 ? @back : @back + 1] = nil
+      popped = @store[@front]
+      @store[@front] = nil
+      @front = @front.pred if @front < size - 1 and @front > 0
+      popped
+    end
   end
 
   def enqueue(element)
@@ -17,7 +28,8 @@ class Queue
       nil
     else
       @store[@back] = element
-      @back = @back.pred
+      @back = @back.pred if @back > 0 and @back < size
+      self
     end
   end
 
@@ -37,7 +49,7 @@ class Queue
   private
 
   def full?
-    @back == 0
+    !@store[0].nil?
   end
 
   def empty?
