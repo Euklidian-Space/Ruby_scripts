@@ -14,12 +14,9 @@ class Queue
     if empty?
       nil
     else
-      #popped = @back == 0 ? @store[@back] : @store[@back + 1]
-
-      #@store[@back == 0 ? @back : @back + 1] = nil
       popped = @store[@front]
       @store[@front] = nil
-      @front = @front.pred if @front < size and @front > 0
+      queue_shift
       popped
     end
   end
@@ -32,13 +29,6 @@ class Queue
       @store[@back] = element
       @back = @back.pred if @back > 0 and @back < size
       self
-    end
-  end
-
-  def requeue_chk
-    if (@back == 0 and @front == 0) or empty?
-      @back = @size - 1
-      @front = @size - 1
     end
   end
 
@@ -64,4 +54,16 @@ class Queue
   def empty?
       @store.index{|elem| !elem.nil?} == nil
   end
+
+  def queue_shift
+    @store = @store.rotate(-1)
+  end
+
+  def requeue_chk
+    if (@back == 0) or empty?
+      @back = @size - 1
+      @front = @size - 1
+    end
+  end
+
 end
