@@ -22,12 +22,13 @@ class Queue
   end
 
   def enqueue(element)
-    requeue_chk
+    #requeue_chk
     if element.nil? or full?
       nil
     else
       @store[@back] = element
       @back = @back.pred if @back > 0 and @back < size
+      requeue_chk
       self
     end
   end
@@ -61,8 +62,8 @@ class Queue
 
   def requeue_chk
     if (@back == 0) or empty?
-      @back = @size - 1
-      @front = @size - 1
+      @back = @front
+      #@front = @size - 1
     end
   end
 
