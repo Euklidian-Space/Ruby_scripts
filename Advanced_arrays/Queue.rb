@@ -62,11 +62,6 @@ class Queue
     @store = @store.rotate(-1)
   end
 
-  def requeue_chk
-    if (@back == 0) or empty?
-      @back = @front
-      #@front = @size - 1
-    end
-  end
+  
 
 end
