@@ -4,7 +4,6 @@
 class Queue
   def initialize(size)
     @size = size
-    @back = @size - 1
     @front = @size - 1
     @store = Array.new(@size)
   end
@@ -15,11 +14,6 @@ class Queue
       nil
     else
       popped = @store[@front]
-      if @back >= 0 and @back < size
-        @back = @back.succ
-      else
-        @back = @back.pred
-      end
       @store[@front] = nil
       queue_shift
       popped
@@ -31,10 +25,7 @@ class Queue
     if element.nil? or full?
       nil
     else
-      #@store[@back] = element
-      #@back = @back.pred if @back > 0 and @back < size
-      #requeue_chk
-      @store[@back] = element
+      @store[@store.rindex(nil)] = element
       self
     end
   end
@@ -49,6 +40,11 @@ class Queue
 
   def test_empty?
     empty?
+  end
+
+  def self.reload
+    #this class method is for testing purposes in irb
+    load 'Queue.rb'
   end
 
 
