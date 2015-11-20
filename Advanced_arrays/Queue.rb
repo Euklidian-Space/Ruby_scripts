@@ -10,11 +10,16 @@ class Queue
   end
 
   def dequeue
-    requeue_chk
+    #requeue_chk
     if empty?
       nil
     else
       popped = @store[@front]
+      if @back >= 0 and @back < size
+        @back = @back.succ
+      else
+        @back = @back.pred
+      end
       @store[@front] = nil
       queue_shift
       popped
@@ -26,9 +31,10 @@ class Queue
     if element.nil? or full?
       nil
     else
+      #@store[@back] = element
+      #@back = @back.pred if @back > 0 and @back < size
+      #requeue_chk
       @store[@back] = element
-      @back = @back.pred if @back > 0 and @back < size
-      requeue_chk
       self
     end
   end
