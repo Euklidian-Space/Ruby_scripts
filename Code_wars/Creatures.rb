@@ -25,11 +25,20 @@
 
 def battle(player1, player2)
   #binding.pry
-  player1_toughness = player1.map {|creature| creature[creature.length - 1]}
-  player1_power = player1.map {|creature| creature[0]}
+  player1_toughness = []
+  player1_power = []
+  player2_toughness = []
+  player2_power = []
   
-  player2_toughness = player2.map {|creature| creature[creature.length - 1]}
-  player2_power = player2.map {|creature| creature[0]}
+  player1.each {|creature| 
+    player1_power << creature.first
+    player1_toughness << creature.last
+  }
+  
+  player2.each {|creature|
+    player2_power << creature.first
+    player2_toughness << creature.last
+  }
   
   
   num_of_battles = (player1.length >= player2.length ? player1.length : player2.length) - 1
