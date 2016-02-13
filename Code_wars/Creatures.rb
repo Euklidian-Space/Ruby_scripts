@@ -23,8 +23,10 @@
 # player2 = [[1, 2], [1, 2], [3, 3]];
 # battle(player1, player2) # { player1: [[5, 5]], player2: [[1, 2], [3, 3]] }
 
+require 'pry'
+
 def battle(player1, player2)
-  #binding.pry
+  
   player1_toughness = []
   player1_power = []
   player2_toughness = []
@@ -41,20 +43,20 @@ def battle(player1, player2)
   }
   
   
-  num_of_battles = (player1.length >= player2.length ? player1.length : player2.length) - 1
+  num_of_battles = (player1.length >= player2.length ? player1.length : player2.length) - 2
   
-  i = 0
-  
-  while i < num_of_battles
+  0.upto num_of_battles do |i|
    
     player2.shift if player1_power[i] >= player2_toughness[i]
+    
     player1.shift if player2_power[i] >= player1_toughness[i]
-    i+=1
     
   end
   
   {player1:player1, player2:player2}
   
+  
 end
 
-puts battle([[1, 1], [2, 1], [2, 2], [5, 5]], [[1, 2], [1, 2], [3, 3]])
+#puts battle([[1, 1], [2, 1], [2, 2], [5, 5]], [[1, 2], [1, 2], [3, 3]])
+
