@@ -1,0 +1,15 @@
+This project is me attempting to implement a set using TDD
+
+The following is a brainstorm of what the requirements might be (I am going to be using a "formal" mathematical notion of a set)
+
+  -there must be an empty set (cardinality zero) and the empty set is in every set
+  -every set, for our purposes, has a cardinality.  We are obviously dealing with finitie sets...for the moment
+  -put objects into a set
+  -remove objects from a set
+  -notion of equality
+  -each set must have a complement...what about the empty set?  In mathematics it is the universal set.
+  -Unions
+  -Intersections
+  -PowerSet
+  -DeMorgan's Laws <---Will these laws be followed by merely implementing unions and intersections properly?
+  -Cartesian Products

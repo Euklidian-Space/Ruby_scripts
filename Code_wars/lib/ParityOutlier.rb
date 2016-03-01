@@ -11,3 +11,17 @@
 # [160, 3, 1719, 19, 11, 13, -21]
 
 # Should return: 160
+
+
+def find_outlier(array)
+  even_parity? = true
+  i = 0
+  loop {
+    if isEven?(array[i]) 
+    i += 1  
+  }
+end
+
+def isEven?(num)
+  num % 2 == 0
+end
