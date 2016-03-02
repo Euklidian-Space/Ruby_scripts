@@ -34,4 +34,27 @@ class MySet
     @set = new_arr
   end
   
+  def ==(other)
+    
+  end
+  
+  private
+  
+  def arrays_match?(objA, objB)
+    setA = self.set 
+    setB = other.set
+    setA.each do |a|
+      index = setB.find_index { |e| match? a,e }
+      return false if index.nil?
+      setB.delete_at(index)
+    end
+    setB.length == 0
+  end
+  
+  def hashes_match?(objA, objB)
+    return false unless objA.keys.sort == objB.keys.sort
+    objA.each { |key,val| return false unless match? val, objB[key] }
+    true
+  end
+  
 end

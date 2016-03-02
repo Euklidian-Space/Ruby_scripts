@@ -38,6 +38,8 @@ class PushPopTest < MiniTest::Test
     set.remove(0)
     assert(set.set.index(original_set[1]), 'the removal of one element should not affect any others')
   end
+  
+  
  
   private
   

@@ -10,7 +10,7 @@ The following is a brainstorm of what the requirements might be (I am going to b
     -these actions should alter cardinality
     -these actions will mutate the object state
     
-  -notion of equality/inequality
+  -(check)notion of equality/inequality 
   -notion of subset
   
   -each set must have a complement...what about the empty set?  In mathematics it is the universal set.
