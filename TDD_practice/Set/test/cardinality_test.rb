@@ -1,7 +1,13 @@
 require 'minitest/autorun'
+#require_relative "TestSetModule"
 require 'MySet.rb'
 
-class TestSet < MiniTest::Test
+class TestSetCardinality < MiniTest::Test
+  
+  def test_every_set_has_cardinality
+    set = set_MySet(0)
+    assert_respond_to(set, :cardinality, 'every set should have cardinality')
+  end
   
   def test_for_empty_set
     set = set_MySet(0)
@@ -31,5 +37,7 @@ class TestSet < MiniTest::Test
     def set_MySet(num)
       MySet.new(num)
     end
+  
+    
  
 end
