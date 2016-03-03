@@ -35,10 +35,16 @@ class MySet
   end
   
   def ==(other)
-    
-  end
+    match?(self.set, other.set)
+  end  
   
   private
+  
+  def match?(objA, objB)
+    return arrays_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
+    return hashes_match?(objA, objB) if objAis_a?(Hash) && objBis_a?(Hash)
+    objA == objB
+  end
   
   def arrays_match?(objA, objB)
     setA = self.set 
