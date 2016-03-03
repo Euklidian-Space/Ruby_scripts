@@ -43,13 +43,14 @@ class MySet
     def match?(objA, objB)
     #debugger
       return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
+      return hash_match?(objA, objB) if objA.is_a?(Hash) && objB.is_a?(Hash)
       objA == objB
     end
 
     def array_match?(arrayA, arrayB)
-      debugger
+      #debugger
       arrayA.each do |a|
-        debugger
+        #debugger
         index = arrayB.find_index {|e| match? a,e}
         return false if index.nil?
       end
@@ -57,9 +58,9 @@ class MySet
     end
 
     def hash_match?(hashA, hashB)
-      #   return false if objA.keys.sort != objB.keys.sort
-      #   hashA.each {|key,val| return false if val != hashB[key]}
-      #   true
+      return false if hashA.keys.sort != hashB.keys.sort
+      hashA.each {|key,val| return false unless match? val, hashB[key]}
+      true
     end
 
 
