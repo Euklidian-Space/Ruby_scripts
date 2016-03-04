@@ -35,22 +35,27 @@ class MySet
   end
 
   def ==(other)
+    return false if self.cardinality != other.cardinality
     match?(self.set, other.set)
+  end
+  
+  def <=(other)
+    return true if self.cardinality == 0
+    
+    array_match?(self.set, other.set)
   end
 
   private
 
     def match?(objA, objB)
-    #debugger
       return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
       return hash_match?(objA, objB) if objA.is_a?(Hash) && objB.is_a?(Hash)
       objA == objB
     end
 
     def array_match?(arrayA, arrayB)
-      #debugger
       arrayA.each do |a|
-        #debugger
+        
         index = arrayB.find_index {|e| match? a,e}
         return false if index.nil?
       end
