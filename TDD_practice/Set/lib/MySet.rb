@@ -33,6 +33,10 @@ class MySet
     end
     @set = new_arr
   end
+  
+  def stack(elem)
+    nil
+  end
 
   def ==(other)
     return false if self.cardinality != other.cardinality

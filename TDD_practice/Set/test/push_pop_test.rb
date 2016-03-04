@@ -39,7 +39,12 @@ class PushPopTest < MiniTest::Test
     assert(set.set.index(original_set[1]), 'the removal of one element should not affect any others')
   end
   
-  
+  def test_stacking_functionality_on_new_set
+    setA = MySet.new(4)
+    setA.stack(1)
+    assert(setA.set[0] == 1)
+    assert(setA.set[setA.cardinality - 1] == nil)
+  end
  
   private
   
@@ -47,7 +52,7 @@ class PushPopTest < MiniTest::Test
       set = MySet.new(num)
       i = 0
       j = 1
-      while i < set.cardinality - 1 do
+      while i < set.cardinality do
         set.place(i, j)
         i += 1
         j += 1
