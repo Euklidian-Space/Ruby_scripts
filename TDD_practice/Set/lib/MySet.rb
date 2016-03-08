@@ -5,7 +5,7 @@ class MySet
 
   attr_reader :set
 
-  def initialize(num)
+  def initialize(num = 0)
    @set =  Array.new(num)
   end
 
@@ -16,7 +16,7 @@ class MySet
   def empty?
     cardinality == 0
   end
-
+ 
   def place(index, elem)
     @set[index] = elem
     if index >= cardinality || index < 0
@@ -34,8 +34,8 @@ class MySet
     @set = new_arr
   end
   
-  def stack(elem)
-    nil
+  def stack(obj)
+    @set << obj
   end
 
   def ==(other)
@@ -44,9 +44,9 @@ class MySet
   end
   
   def <=(other)
-    return true if self.cardinality == 0
+    return true if self.empty? #the empty set is a subset of any set
     
-    array_match?(self.set, other.set)
+    match?(self.set, other.set)
   end
 
   private

@@ -24,7 +24,18 @@ class SubsetTest < MiniTest::Test
   end
   
   def test_for_proper_subset_with_array_elements
-    
+    setA = MySet.new(3)
+    setB = MySet.new(2)
+    setA.place(0,[2,1])
+    setA.place(1,{one:1, two:2})
+    setA.place(2, [])
+    setB.place(0, {two:2, one:1})
+    setB.place(1, [])
+    assert(setB <= setA)
+    refute(setA <= setB)
+    setB.place(0, nil)
+    refute(setB <= setA)
+    refute(setA <= setB)
   end
   
   private

@@ -39,12 +39,38 @@ class PushPopTest < MiniTest::Test
     assert(set.set.index(original_set[1]), 'the removal of one element should not affect any others')
   end
   
-  def test_stacking_functionality_on_new_set
-    setA = MySet.new(4)
-    setA.stack(1)
-    assert(setA.set[0] == 1)
-    assert(setA.set[setA.cardinality - 1] == nil)
-  end
+  # def test_stacking_functionality_on_a_non_empty_set
+  #   setA = MySet.new(4)
+  #   setA.stack(1)
+  #   assert(setA.set[0] == 1)
+  #   assert(setA.set[setA.cardinality - 1] == nil)
+  # end
+  
+  # def test_stacking_functionality_on_an_empty_set
+  #   setA = MySet.new
+  #   setA.stack(1)
+  #   assert(setA.set[0] == 1)
+  #   assert(setA.cardinality == 1)
+  # end
+  
+  
+  # # def test_stacking_functionality_on_a_full_set
+  # #   #we define a full set
+  # #   setA = MySet.new(2)
+  # #   setA.stack(1)
+  # #   setA.stack(2)
+  # #   assert_raises FullSetError do
+  # #     setA.stack(3)
+  # #   end
+  # # end
+  
+  # def test_stacking_functionality_on_a_non_full_non_empty_set
+  #   setA = MySet.new(3)
+  #   setA.stack(1)
+  #   setA.stack(2)
+  #   assert(setA.set[0] == 1, 'calling stack method on a set should not overwrite the first element')
+  #   assert(setA.set[setA.cardinality - 1] == nil, 'the last element of a non full set should be a nil object')
+  # end
  
   private
   
