@@ -48,6 +48,10 @@ class MySet
     
     match?(self.set, other.set)
   end
+  
+  def -(other)
+    new_set = self.set - other.set 
+  end
 
   private
 
