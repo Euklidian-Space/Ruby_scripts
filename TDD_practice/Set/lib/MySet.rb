@@ -34,9 +34,9 @@ class MySet
     @set = new_arr
   end
   
-  def stack(obj)
-    @set << obj
-  end
+  # def stack(obj)
+  #   @set << obj
+  # end
 
   def ==(other)
     return false if self.cardinality != other.cardinality
@@ -50,10 +50,19 @@ class MySet
   end
   
   def -(other)
-    new_set = self.set - other.set 
+    result = self.set - other.set 
+    new_set = MySet.new
+    result.each_with_index { |item, index|
+      new_set.place(index, item)
+    }
+    new_set
   end
 
   private
+  
+    def make(set)
+      @set = set 
+    end
 
     def match?(objA, objB)
       return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
