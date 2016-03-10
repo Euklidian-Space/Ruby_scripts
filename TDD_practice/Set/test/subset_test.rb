@@ -23,7 +23,7 @@ class SubsetTest < MiniTest::Test
     assert(setB <= setA)
   end
   
-  def test_for_proper_subset_with_array_elements
+  def test_for_proper_subset_with_array_and_hash_elements
     setA = MySet.new(3)
     setB = MySet.new(2)
     setA.place(0,[2,1])

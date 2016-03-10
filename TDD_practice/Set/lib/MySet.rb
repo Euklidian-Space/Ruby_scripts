@@ -34,7 +34,7 @@ class MySet
     @set = new_arr
   end
   
-  # def stack(obj)
+  # def stack(obj) <----may or may not implement this method.  At the moment it seems superfluous 
   #   @set << obj
   # end
 
@@ -49,20 +49,25 @@ class MySet
     match?(self.set, other.set)
   end
   
-  def -(other)
-    result = self.set - other.set 
-    new_set = MySet.new
-    result.each_with_index { |item, index|
-      new_set.place(index, item)
-    }
-    new_set
+  def -(other) #check self elements against other elements the ones that fail to match are what goes into the resulting set
+    resultant_set = MySet.new 
+    i = 0
+    self.set.each do |a|
+      elem = other.set.none? {|e| match?(a,e)}
+      if elem
+        resultant_set.place(i, a)
+        i += 1
+      end
+    end
+    #debugger
+    resultant_set
+  end
+  
+  def union(other)
+    MySet.new
   end
 
   private
-  
-    def make(set)
-      @set = set 
-    end
 
     def match?(objA, objB)
       return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
@@ -75,6 +80,7 @@ class MySet
         
         index = arrayB.find_index {|e| match? a,e}
         return false if index.nil?
+        #yield index if block_given? && index
       end
       true
     end
