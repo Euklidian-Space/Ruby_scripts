@@ -48,8 +48,13 @@ class MySet
 
     match?(self.set, other.set)
   end
+<<<<<<< HEAD
 
   def -(other) #check self elements against other elements the ones that fail to match are what goes into the resulting set
+=======
+  
+  def -(other) 
+>>>>>>> uhhhh
     op_method('none?', self, other)
   end
 
@@ -69,7 +74,6 @@ class MySet
           i += 1
         end
       end
-    #debugger
       resultant_set
     end
 
