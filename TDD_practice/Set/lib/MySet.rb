@@ -16,7 +16,7 @@ class MySet
   def empty?
     cardinality == 0
   end
- 
+
   def place(index, elem)
     @set[index] = elem
     if index >= cardinality || index < 0
@@ -33,8 +33,8 @@ class MySet
     end
     @set = new_arr
   end
-  
-  # def stack(obj) <----may or may not implement this method.  At the moment it seems superfluous 
+
+  # def stack(obj) <----may or may not implement this method.  At the moment it seems superfluous
   #   @set << obj
   # end
 
@@ -42,26 +42,25 @@ class MySet
     return false if self.cardinality != other.cardinality
     match?(self.set, other.set)
   end
-  
+
   def <=(other)
     return true if self.empty? #the empty set is a subset of any set
-    
+
     match?(self.set, other.set)
   end
-  
+
   def -(other) #check self elements against other elements the ones that fail to match are what goes into the resulting set
     op_method('none?', self, other)
   end
-  
-  def union(other)
+
+  def intersection(other)
     op_method('any?', self, other)
   end
 
   private
-  
-  
+
     def op_method(method, self_obj, other_obj)
-      resultant_set = MySet.new 
+      resultant_set = MySet.new
       i = 0
       self_obj.set.each do |a|
         elem = other_obj.set.public_send(method) {|e| match?(a,e)}
@@ -82,7 +81,7 @@ class MySet
 
     def array_match?(arrayA, arrayB)
       arrayA.each do |a|
-        
+
         index = arrayB.find_index {|e| match? a,e}
         return false if index.nil?
         #yield index if block_given? && index
