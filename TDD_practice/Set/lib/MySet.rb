@@ -50,24 +50,29 @@ class MySet
   end
   
   def -(other) #check self elements against other elements the ones that fail to match are what goes into the resulting set
-    resultant_set = MySet.new 
-    i = 0
-    self.set.each do |a|
-      elem = other.set.none? {|e| match?(a,e)}
-      if elem
-        resultant_set.place(i, a)
-        i += 1
-      end
-    end
-    #debugger
-    resultant_set
+    op_method('none?', self, other)
   end
   
   def union(other)
-    MySet.new
+    op_method('any?', self, other)
   end
 
   private
+  
+  
+    def op_method(method, self_obj, other_obj)
+      resultant_set = MySet.new 
+      i = 0
+      self_obj.set.each do |a|
+        elem = other_obj.set.public_send(method) {|e| match?(a,e)}
+        if elem
+          resultant_set.place(i, a)
+          i += 1
+        end
+      end
+    #debugger
+      resultant_set
+    end
 
     def match?(objA, objB)
       return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
