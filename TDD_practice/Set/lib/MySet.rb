@@ -54,7 +54,9 @@ class MySet
   end
 
   def intersection(other)
-    op_method('any?', self, other)
+    complement = self - other
+    debugger
+    self - complement
   end
 
   private
@@ -63,8 +65,8 @@ class MySet
       resultant_set = MySet.new
       i = 0
       self_obj.set.each do |a|
-        elem = other_obj.set.public_send(method) {|e| match?(a,e)}
-        if elem
+        check = other_obj.set.public_send(method) {|e| match?(a,e)}
+        if check
           resultant_set.place(i, a)
           i += 1
         end
@@ -79,7 +81,7 @@ class MySet
       objA == objB
     end
 
-    def array_match?(arrayA, arrayB)
+    def array_match?(arrayA, arrayB) #<--We have an issue with this method.  If A subset? B, then array_match? returns true 
       arrayA.each do |a|
 
         index = arrayB.find_index {|e| match? a,e}
