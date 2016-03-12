@@ -48,13 +48,9 @@ class MySet
 
     match?(self.set, other.set)
   end
-<<<<<<< HEAD
 
-  def -(other) #check self elements against other elements the ones that fail to match are what goes into the resulting set
-=======
   
   def -(other) 
->>>>>>> uhhhh
     op_method('none?', self, other)
   end
 
@@ -68,7 +64,10 @@ class MySet
       resultant_set = MySet.new
       i = 0
       self_obj.set.each do |a|
-        elem = other_obj.set.public_send(method) {|e| match?(a,e)}
+        elem = other_obj.set.public_send(method) {|e| 
+          debugger
+          match?(a,e)
+        }
         if elem
           resultant_set.place(i, a)
           i += 1
