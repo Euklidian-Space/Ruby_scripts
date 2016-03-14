@@ -46,7 +46,7 @@ class MySet
   def <=(other)
     return true if self.empty? #the empty set is a subset of any set
 
-    match?(self.set, other.set)
+    match?(self.set, other.set, true)
   end
 
 
@@ -56,7 +56,7 @@ class MySet
 
   def intersection(other)
     complement = self - other
-    debugger
+   # debugger
     self - complement
   end
 
@@ -66,10 +66,7 @@ class MySet
       resultant_set = MySet.new
       i = 0
       self_obj.set.each do |a|
-        elem = other_obj.set.public_send(method) {|e|
-          debugger
-          match?(a,e)
-        }
+        elem = other_obj.set.public_send(method) { |e| match?(a,e) }
         if elem
           resultant_set.place(i, a)
           i += 1
@@ -78,9 +75,13 @@ class MySet
       resultant_set
     end
 
-    def match?(objA, objB)
-      return array_match?(objA, objB) if objA.is_a?(Array) && objB.is_a?(Array)
+    def match?(objA, objB, subset = nil)
+      if objA.is_a?(Array) && objB.is_a?(Array)
+        return false if objA.length != objB.length && subset.nil?
+        return array_match?(objA, objB)
+      end
       return hash_match?(objA, objB) if objA.is_a?(Hash) && objB.is_a?(Hash)
+      
       objA == objB
     end
 

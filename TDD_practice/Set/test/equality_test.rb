@@ -58,6 +58,17 @@ class EqualityTest < MiniTest::Test
     
     refute(setB == setA)
   end
+  
+  def test_sets_with_elements_that_are_subsets_do_not_equal
+    setA = MySet.new(2) 
+    setB = MySet.new(2)
+    setA.place(1, [1,2,3])
+    setA.place(0, 2)
+    setB.place(1, [1,2])
+    setB.place(0, 2)
+    refute(setA == setB)
+    refute(setB == setA)
+  end
 
 
   private
