@@ -85,6 +85,7 @@ class MySet
     end
 
     def array_match?(arrayA, arrayB) #<--We have an issue with this method.  If A subset? B, then array_match? returns true
+
       arrayA.each do |a|
 
         index = arrayB.find_index {|e| match? a,e}
