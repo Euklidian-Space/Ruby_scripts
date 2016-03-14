@@ -1,0 +1,2 @@
+Entry #1:  In the preliminary stages I made cardinality an attr_accessor.  Which lead to the following test passing
+
