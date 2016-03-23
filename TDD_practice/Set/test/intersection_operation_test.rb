@@ -26,7 +26,7 @@ class IntersectionOperationTest < MiniTest::Test
   end
 
   def test_intersection_of_sets_with_array_elements
-    skip()
+   
     setA = MySet.new(3)
     setB = MySet.new(2)
     setC = MySet.new(4)
