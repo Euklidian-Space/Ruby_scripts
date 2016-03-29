@@ -54,13 +54,20 @@ def count(node, data)
 end
 
 def get_nth(list, index)
-  raise 'Index out of range' unless (0..length(list) - 1).include? index || list
+  raise 'Index out of range dood' unless (0..length(list) - 1).include? index || list
   index == 0 ? list : get_nth(list.next, index - 1)
 end
 
 def insert_nth(head, index, data)
-  raise 'Index out of range' unless (0..length(list) - 1).include? index || list 
-  getNth(head, index).data = data
+  raise 'Index out of range' if index > length(head) + 1
+  return push(head, data) if index == 0 
+  # if index == length(head)
+  #   get_nth(head, length(head) - 1).next = Node.new(data)
+  #   return head
+  # end
+  # n_minus_one_node = get_nth(head, index - 1)
+  # n_minus_one_node.next = push(get_nth(head, index), data)
+  head.next = insert_nth(head.next, index - 1, data)
   head
 end
 
