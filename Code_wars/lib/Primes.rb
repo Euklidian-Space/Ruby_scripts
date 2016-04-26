@@ -1,19 +1,10 @@
 class Primes
   
-  def first(n)
-   num = int_enum
-   primes = []
-   loop do
-    p = num.next
-    if prime?(p)
-      primes << p 
-      n -= 1
-    end
-    return primes if n == 0 
-   end
+  def self.first(n)
+    prime_generator(2,n).to_a
   end
   
-  def prime?(n)
+  def self.prime?(n)
     return true if n == 2 || n == 3
     return false if n % 2 == 0
     return false if n % 3 == 0
@@ -27,7 +18,21 @@ class Primes
     return true
   end
   
+  def self.prime_generator(inf, num_of_primes)
+    count = num_of_primes
+    Enumerator.new do |enum|
+      while count > 0
+        if prime? inf
+          enum.yield inf 
+          count -= 1
+        end
+        inf += 1
+      end
+    end
+  end
+  
   private
+  
     
     def sieve_of_eratosthenes(n)
       listA = (2..n).to_a
@@ -51,15 +56,4 @@ class Primes
         end
       end
     end
-    
-    def int_enum
-      Enumerator.new do |enum|
-        i = 2
-        while true
-          enum.yield i
-          i += 1
-        end
-      end
-    end
-
 end

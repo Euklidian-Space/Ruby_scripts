@@ -22,6 +22,9 @@
 
 # Don't worry about invalid input. Arguments passed into the function are guaranteed to be valid integers >= 1.
 
+
+require "pry"
+
 # def collatz(num)
 #   return '1' if num == 1
 #   num.even? ? num.to_s + '->' + collatz((num * 0.5).to_i) : num.to_s + '->' + collatz(3*num + 1)
@@ -29,9 +32,20 @@
 
 def collatz(num)
   return [1] if num == 1
-  num.even? ? [num] + collatz(num / 2) : [num] + collatz(3*num + 1)
+  [num] + (num.even? ? collatz(num / 2) : collatz(3*num + 1))
 end
 
-def max_collatz_length
-    
+
+def collatz_generator
+  chk = 1 
+  Enumerator.new do |enum|
+    while true 
+      enum.yield collatz(chk)
+      chk += 1 
+    end
+  end
+end
+
+def max_collatz_length(n, generator = nil, max = 0)
+	return [] if n == 0 || !n.is_a?(Numeric)
 end
