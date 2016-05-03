@@ -1,14 +1,16 @@
+require "pry"
 class Sudoku
-  attr_reader :board, :size
+  attr_reader :board, :size, :sub_size
   
   def initialize(mat)
     @board = mat
     @size = board.count
+    @sub_size = Math.sqrt(size)
   end
   
   def is_valid
     return false if board.any?{ |elem| elem.length < size }
-    (column_validator board) && (row_validator board) && (sub_square_validator(board, Math.sqrt(size)))
+    (columns_valid? board) && (rows_valid? board) && (valid_sub_squares?)
   end
   
   private
@@ -17,26 +19,42 @@ class Sudoku
       size * (size + 1) / 2
     end
     
-    def row_validator(mat)
+    def rows_valid?(mat)
       return true if mat.empty?
       mat.first.reduce(:+) == sum_first_n ? 
-        row_validator(tail mat) : (return false)
+        rows_valid?(tail mat) : (return false)
     end
     
-    def column_validator(mat)
+    def columns_valid?(mat)
       return true if mat.first.empty?
       mat.map{ |e| e.first }.reduce(:+) == sum_first_n ? 
-        column_validator(mat.map{ |e| tail e }) : (return false)
+        columns_valid?(mat.map{ |e| tail e }) : (return false)
     end
     
-    def sub_square_validator(mat, col_count)
-      return true if mat.first.empty?
-      mat.map{ |e| e.first col_count } == sum_first_n * col_count ?
-        sub_square_validator(mat.map{ |e| tail(e, col_count)}, col_count) : (return false)
+    def sub_square_valid?(arr)
+      return true if arr.first.empty?
+      return false if arr.map{ |e| e.first sub_size }.flatten.reduce(:+) != sum_first_n
+      sub_square_valid?(arr.map{ |e| tail(e,sub_size)})
     end
     
-    def tail(arr, count )
+    def valid_sub_squares?(gen = nil)
+      gen ||= row_yielder(board, sub_size)  
+      return true if gen.peek.empty?
+      sub_square_valid?(gen.next) ? valid_sub_squares?(gen) : (return false)
+    end
+     
+    def tail(arr, count = 1)
       arr - arr.first(count)
     end
-  
+    
+    def row_yielder(mat, count)
+      arr = mat
+      Enumerator.new do |enum|
+        while arr.length >= 0
+          enum.yield arr.first(count)
+          arr = tail(arr, count)
+        end
+      end
+    end
+
 end
