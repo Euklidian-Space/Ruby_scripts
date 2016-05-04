@@ -1,4 +1,3 @@
-require "pry"
 class Sudoku
   attr_reader :board, :size, :sub_size
   
