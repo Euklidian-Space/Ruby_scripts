@@ -51,7 +51,7 @@ class SudokuTests < MiniTest::Test
     assert(goodSudoku2.is_valid)
   end
   
-  def test_invalid_sudoke
+  def test_invalid_sudoku
     badSudoku1 = Sudoku.new([
       [0,2,3, 4,5,6, 7,8,9],
       [1,2,3, 4,5,6, 7,8,9],
@@ -66,6 +66,16 @@ class SudokuTests < MiniTest::Test
       [1,2,3, 4,5,6, 7,8,9]
     ]) 
     refute(badSudoku1.is_valid)
+  end
+  
+  def test_invalid_non_standard_sudoku
+    badSudoku2 = Sudoku.new([
+      [1,2,3,4,5],
+      [1,2,3,4],
+      [1,2,3,4],  
+      [1]
+    ]) 
+    refute(badSudoku2.is_valid)
   end
   
 end
