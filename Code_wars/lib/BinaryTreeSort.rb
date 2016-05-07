@@ -7,7 +7,7 @@ class TreeNode
   
 end
 
-def nodes_with_level(node, level = 0)
+def nodes_with_level(node, level = 0, hash = nil)
   node ? 
     ([[level, node]] + nodes_with_level(node.left, level + 1) + nodes_with_level(node.right, level + 1)) 
       : []
