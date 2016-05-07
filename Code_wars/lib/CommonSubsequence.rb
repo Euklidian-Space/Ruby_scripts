@@ -1,5 +1,10 @@
-require "set"
 
 def lcs(x,y)
-  Set.new(x.split('')).intersection(Set.new(y.split(''))).to_a.join('')
+  return '' if x.empty? || y.empty?
+  x.include?(y.chr) ? (x.chr == y.chr ? y.chr + lcs(x.sub(y.chr,''), tail_string(y)) : y.chr + lcs(tail_string(x.sub(y.chr, '')), tail_string(y)))
+    : lcs(x, tail_string(y))
+end
+
+def tail_string str
+  str.sub(str.chr, '')
 end
