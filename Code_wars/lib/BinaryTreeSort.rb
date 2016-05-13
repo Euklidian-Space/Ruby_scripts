@@ -20,8 +20,14 @@ def values_by_level node
 end
 
 def tree_by_levels node
-  vals = []
-  return vals unless node
-  (values_by_level node).each_value { |val| vals << val }
-  vals.flatten
+  nodes_with_level(node).sort{ |elem| elem.first }.map { |tree_node| tree_node.last.value }
 end
+
+# def tree_by_levels node
+#   vals = []
+#   return vals unless node
+#   (values_by_level node).each_value { |val| vals << val }
+#   vals.flatten
+# end
+
+
