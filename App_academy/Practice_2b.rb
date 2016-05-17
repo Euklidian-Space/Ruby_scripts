@@ -92,3 +92,23 @@ def longest_palindrome(string)
 	
 	substrings.select{ |sub_string| palindrome? sub_string }.max_by{ |palindrome| palindrome.length }
 end
+
+
+
+def bubble_sort(arr)
+	swapped = true
+	n = arr.length
+	while swapped
+		swapped = false
+		i = 1
+		while i < n do
+      byebug
+			if arr[i - 1] > arr[i]
+				arr[i - 1], arr[i] = arr[i], arr[i - 1]
+				swapped = true
+			end
+			i += 1
+		end
+	end
+	arr
+end
