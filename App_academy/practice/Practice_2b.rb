@@ -28,7 +28,7 @@ def ordered_vowel_word? str
   vowels.sort == vowels
 end
 
-def ordered_vowel_words str 
+def ordered_vowel_words str
   str.split(' ').select{ |word| ordered_vowel_word? word }.join(' ')
 end
 
@@ -38,7 +38,7 @@ def dasherize_number(num)
 	result = []
 	even_occurred = false
 	arr.each_with_index do |e, idx|
-		if e.to_i.odd?	
+		if e.to_i.odd?
 			result << '-' if even_occurred
 			result << e + (idx == arr.length - 1 ? '' : '-')
 		else
@@ -53,7 +53,7 @@ def scramble_string(string, positions)
 	str_arr = string.split('')
 	result = []
 	positions.each do |position|
-		result << str_arr[position] 
+		result << str_arr[position]
 	end
 	result.join('')
 end
@@ -89,10 +89,42 @@ def longest_palindrome(string)
 			substrings << string.slice(i, j)
 		end
 	end
-	
+
 	substrings.select{ |sub_string| palindrome? sub_string }.max_by{ |palindrome| palindrome.length }
 end
 
+<<<<<<< HEAD:App_academy/practice/Practice_2b.rb
+=======
+def num_repeats(string)
+	freq_hash = Hash.new 0
+	string.each_char{ |char| freq_hash[char] += 1 }
+  freq_hash.select{ |k,v| v > 1 }.count
+end
+
+def factor n
+  (1..n).select{ |number| n % number == 0 }
+end
+
+def greatest_common_factor(number1, number2)
+  factors1 = factor number1
+  factors2 = factor number2
+  freq_hash = Hash.new 0
+  (factors1 + factors2).each { |factor| freq_hash[factor] += 1 }
+  freq_hash.select { |k,v| v > 1 }.max_by{ |k,v| k}.first
+end
+
+def alph_shift(word, coeff)
+  alph = ('a'..'z').to_a
+  shifted_alph = alph.rotate coeff
+  result = ''
+  word.each_char{ |char| result += shifted_alph[alph.index char] }
+  result
+end
+
+def caeser_cipher(offset, string)
+  string.split(' ').each{|word| alph_shift(word, offset)}.join(' ')
+end
+>>>>>>> 7883cd7b66d405945ae81e7d3f13be4b70aab6a3:App_academy/Practice_2b.rb
 
 
 def bubble_sort(arr)
@@ -100,8 +132,10 @@ def bubble_sort(arr)
 	n = arr.length
 	while swapped
 		swapped = false
+<<<<<<< HEAD:App_academy/practice/Practice_2b.rb
 		i = 1
 		while i < n do
+		for i in (1..n) do
       byebug
 			if arr[i - 1] > arr[i]
 				arr[i - 1], arr[i] = arr[i], arr[i - 1]
