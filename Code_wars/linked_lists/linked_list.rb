@@ -71,8 +71,14 @@ def insert_nth(head, index, data)
   head
 end
 
-def is_circular?(head, current_node = head.next)
-  current_node.nil? ? false : (head == current_node ? true : is_circular?(head, current_node.next))
+def is_circular?(head, current_node = head.next, ledger = {})
+  if current_node.nil?
+    return false
+  else head == current_node || ledger[current_node.object_id]
+    return true
+  end
+  ledger[current_node.object_id] = true 
+  is_circular?(head, current_node.next, ledger)
 end
 
 
