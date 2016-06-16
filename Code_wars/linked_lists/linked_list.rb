@@ -74,7 +74,7 @@ end
 def is_circular?(head, current_node = head.next, ledger = {})
   if current_node.nil?
     return false
-  else head == current_node || ledger[current_node.object_id]
+  elsif head == current_node || ledger[current_node.object_id]
     return true
   end
   ledger[current_node.object_id] = true 
