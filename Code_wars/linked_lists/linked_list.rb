@@ -34,12 +34,8 @@ def build_one_two_three
 	generate_linked_list(3,2,1)
 end
 
-def generate_linked_list(tail_data, *data)
-  head = push(nil,tail_data)
-  data.each do |d|
-    head = push(head, d)
-  end
-  head 
+def generate_linked_list(node, *data)
+  node.next = Node.new data.first 
 end
 
 def length(list)

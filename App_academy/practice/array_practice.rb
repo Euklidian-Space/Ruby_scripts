@@ -37,7 +37,6 @@ end
 #   arr
 # end
 
-
 def longest_winning_streak str 
   win_ocurred = false
   current_streak = 0
@@ -82,8 +81,7 @@ end
 
 def length arr 
   arr.empty? ? 0 : 1 + length(arr.drop 1)
-end
-
+end 
 def adjacent_sum arr 
   adjacent_arr = []
   for i in (1..arr.length - 1) do 
@@ -107,3 +105,17 @@ def bubble_sort(arr)
 	end
 	result 
 end
+
+
+def flatten arr 
+  return [] if arr.empty?
+  arr[0].is_a?(Array) ? flatten(arr[0]) + flatten(arr[1..arr.length - 1])
+    : [arr[0]] + flatten(arr[1..arr.length - 1])
+end
+
+
+
+
+
+
+
