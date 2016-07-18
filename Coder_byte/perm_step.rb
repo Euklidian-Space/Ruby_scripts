@@ -1,6 +1,7 @@
 def permutationStep(num)
   arr = digit_split(num).reverse
-  arr.permutation(arr.length).map { |elem| elem.join.to_i }.sort.find { |elem| elem > num }
+  result = arr.permutation(arr.length).map { |elem| elem.join.to_i }.sort.find { |elem| elem > num }
+  result ? result : -1
 end
 
 def digit_split num 
