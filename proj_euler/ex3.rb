@@ -18,3 +18,4 @@ def prime_factors num
   end
   result << num if num > 2
 end
+
