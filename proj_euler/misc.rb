@@ -4,6 +4,20 @@ def digit_count num
   num == 0 ? 0 : 1 + digit_count(num / 10)  
 end
 
+def digit_split str
+  str.chars.reduce([]) { |result, char| result << char.to_i; result }
+end
+
+def int_digit_split str
+  num = str.to_i
+  result = []
+  until num == 0 do 
+    result << num % 10
+    num /= 10
+  end
+  result.reverse 
+end
+
 
 def fib_gen 
   a, b = 0, 1
