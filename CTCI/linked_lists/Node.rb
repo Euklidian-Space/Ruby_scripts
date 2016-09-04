@@ -24,7 +24,6 @@ end
 
 def delete_node(head, data)
   return head.next if head.data == data
-  byebug
   n = head
   until n.next.nil? do 
     if n.next.data == data
@@ -34,4 +33,13 @@ def delete_node(head, data)
       n = n.next
     end
   end
+  head
+end
+
+def make_int_list(args)
+  head = Node.new args.shift
+  args.each do |arg|
+    head.append arg  
+  end
+  head
 end
