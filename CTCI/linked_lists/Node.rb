@@ -1,5 +1,6 @@
 
 class Node
+  include Enumerable
   attr_accessor :next 
   attr_reader :data
   
@@ -15,6 +16,14 @@ class Node
     end
     n.next = Node.new data
     self
+  end
+  
+  def each 
+    temp = self
+    until temp.nil? do 
+      yield temp
+      temp = temp.next
+    end
   end
     
 end
