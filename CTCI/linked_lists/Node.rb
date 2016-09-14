@@ -65,7 +65,14 @@ def make_int_list(args)
 end
 
 
-
+def make_circular_list 
+  list = make_int_list([1,2,3,4,5])
+  bad_node = Node.new 'x' 
+  start = list.next.next
+  list.append bad_node
+  bad_node.append start
+  list
+end
 
 
 

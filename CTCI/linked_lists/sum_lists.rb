@@ -14,7 +14,7 @@ def sum_lists(headA, headB, result = nil, carry = 0)
   sum_lists(headA.next, headB.next, result, carry)
 end
 
-def _sum_lists(headA, headB, result)
+def _sum_lists(headA, headB, result, carry)
   if !headA && headB
     result.append(headB.data + carry)
     _sum_lists(headA, headB.next, result)
