@@ -70,7 +70,7 @@ def make_circular_list
   bad_node = Node.new 'x' 
   start = list.next.next
   list.append bad_node
-  bad_node.append start
+  bad_node.next = start
   list
 end
 
