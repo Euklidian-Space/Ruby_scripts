@@ -12,28 +12,41 @@ def kth_to_last_iter(head, k)
   p1
 end
 
+# def _kth_to_last(head, k, counter)
+#   return nil if head.nil?
+#   node = _kth_to_last(head.next, k, counter)
+#   return head if counter.next == k
+#   node 
+# end
+
+
+# def kth_to_last(head, k)
+#   counter = int_gen(1)
+#   _kth_to_last(head, k, counter)
+# end
+
+# def int_gen start
+#   Enumerator.new do |enum|
+#     loop do 
+#       enum.yield start
+#       start += 1
+#     end
+#   end
+# end
+
+
+def kth_to_last(node, k)
+  n = 0
+  counter = Proc.new { n += 1 }
+  _kth_to_last(node, k, counter)
+end
+
 def _kth_to_last(head, k, counter)
-  return nil if head.nil?
+  return nil if node.next.nil?
   node = _kth_to_last(head.next, k, counter)
-  return head if counter.next == k
-  node 
+  return head if k == counter.call
+  node
 end
-
-
-def kth_to_last(head, k)
-  counter = int_gen(1)
-  _kth_to_last(head, k, counter)
-end
-
-def int_gen start
-  Enumerator.new do |enum|
-    loop do 
-      enum.yield start
-      start += 1
-    end
-  end
-end
-
 
 
 

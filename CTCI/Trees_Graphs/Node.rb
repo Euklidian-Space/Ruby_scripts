@@ -1,9 +1,9 @@
 class Node
-  attr_reader :data
+  attr_reader :data, :children
   
-  def initialize data 
+  def initialize(data, children = []) 
     @data = data
-    @children = []
+    @children = children
   end
   
   def left
