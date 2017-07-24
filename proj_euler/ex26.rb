@@ -36,9 +36,9 @@ end
 def cycle_length num 
   return 0 if num % 2 == 0 or num % 5 == 0
   
-  1.upto(num - 1).select do |k|
-    (10**k) % num == 1
-  end.max
+  1.upto(num - 1).each do |k|
+    return k if (10**k) % num == 1
+  end
 end
 
 
