@@ -8,6 +8,11 @@ def digit_split str
   str.chars.reduce([]) { |result, char| result << char.to_i; result }
 end
 
+def digits(n)
+  return [] if n == 0
+  digits(n / 10) + [n % 10]
+end
+
 def int_digit_split str
   num = str.to_i
   result = []
