@@ -1,20 +1,15 @@
 require_relative "GraphNode.rb"
-require_relative "Graph.rb"
+#require_relative "Graph.rb"
+require "pry"
 
 def route?(nodeA, cand)
-  return true if nodeA.name == cand.name 
+  byebug
+  return true if nodeA == cand
   nodeA.mark
   nodeA.children.each do |child|
-    unless child.marked? 
-      route?(child, cand)  
+    if !child.marked? && route?(child, cand) 
+      return true 
     end
   end
+  false
 end 
-
-def traverse(nodes, cand)
-  
-end
-
-# def leaf?(node) 
-#   node.children.nil?
-# end

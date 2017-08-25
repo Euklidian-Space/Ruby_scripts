@@ -1,5 +1,6 @@
 class GraphNode
-  attr_reader :name, :children
+  attr_reader :name
+  attr_accessor :children
   def initialize(name, children = [])  
     @name = name
     @children = children
@@ -11,11 +12,11 @@ class GraphNode
   end
   
   def mark
-    @mark = true 
+    @marked = true 
   end
   
   def unmark
-    @mark = false 
+    @marked = false 
   end
   
 end
